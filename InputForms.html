@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width">
+     <title>Basics Input Type</title>   
+    <style>
+        html, input {
+            font-family: sans-serif;
+        }
+        body {
+            width:60%;
+            max: width 200px;
+            margin: 10px auto;
+            padding: 2em;
+        }
+        .headerContainer {
+            display: flex;
+            flex-flow: column wrap;
+            align-content: center;
+            background: gray;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-top: 100px;
+        }
+        div {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        label, input, button {
+            font-size: 20spx;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        label {
+            text-align: right;
+            width: 10%;
+            margin-right: 2%;
+        }
+        input {
+            flex:auto;
+        }
+        button {
+            width:5%;
+            background: #f39f0d;
+            margin: 0 auto;
+        }
+        error-output {
+            font-size: 12px;
+            font-style: italic;
+            color: red;
+        }
+
+    </style>
+    </head>
+<body>
+    <form>
+        <header class="headerContainer"><h1>Login Form</header>
+            <div>
+                <label for= "text">Name:</label>
+                <input type="text" id="text" name="text">
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div>
+                <label for="pwd">Password: </label>
+                <input type="password" id="pwd" name="pwd">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="url">URL:</label>
+                <input type="url" id="url" name="url">
+            </div>
+            <div>
+                <label for="number">Mobile Number:</label>
+                <input type="number" id="number" name="number">
+            </div>
+            <div>
+                <label for="tel">Telephone:</label>
+                <input type="tel" id="tel" name="tel">
+            </div>
+            <div>
+                <label for="search">Search:</label>
+                <input type="search" id="search" name="search">
+            </div>
+            <div class="nativeDataTimePicker">
+                <label for="party">Choose Date&Time:</label>
+                <input type="datetime-local" id="party" name="BirthDay">
+                <span class="validity"></span>
+            </div>
+            <div>
+                <label for="salary">Choose Your Salary:</label>
+                <input type="range" name="salary" id="salary" min="250000" max="600000" step="50" value="250000">
+                <output class="salary-output" for="salary">300000</output>
+            </div>
+            <div>
+                <button>Submit</button>
+                <button>Reset</button>
+            </div>
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input', function() {
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if (nameRegex.test(text.value))
+            textError.textContent="";
+            else textError.textContent= "Name Is Incorrect";
+        });
+        const salary = document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        output.textContent= salary.value;
+        salary.addEventListener('input', function() {
+            output.textContent = salary.value;
+        });
+</script>
+</body>
+</html>
